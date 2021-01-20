@@ -112,6 +112,15 @@ RSpec.describe JobPostsController, type: :controller do
             # Then
             expect(assigns(:job_posts)).to eq([job_post_3, job_post_2,job_post_1])
         end
-        
     end# 👈🏻 describe 'index' ends here 
+    describe "# edit" do# 👈🏻 describe 'edit' starts here 
+        it "render the edit template" do
+            # Given
+            job_post=FactoryBot.create(:job_post)
+            #When
+            get(:edit, params:{id: job_post.id})
+            # then
+            expect(response).to render_template :edit
+        end
+    end# 👈🏻 describe 'edit' ends here 
 end

@@ -23,4 +23,6 @@ class JobPostsController < ApplicationController
     def index
         @job_posts=JobPost.all.order(created_at: :desc)
     end
+    def edit
+    end
 end
