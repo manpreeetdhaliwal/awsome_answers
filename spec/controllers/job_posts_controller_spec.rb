@@ -152,4 +152,22 @@ RSpec.describe JobPostsController, type: :controller do
             end
         end
     end# 👈🏻 describe 'update' ends here 
+    describe '#destroy' do
+        before do
+            #given
+            @job_post=FactoryBot.create(:job_post)
+            #when
+            delete(:destroy, params:{id: @job_post.id})
+        end
+        it 'remove job post from the db' do
+            #then 
+            expect(JobPost.find_by(id: @job_post.id)).to(be(nil))
+        end
+        it 'redirect to the job post index' do
+            expect(response).to redirect_to(job_posts_path)
+        end
+        it 'set a flash message' do
+            expect(flash[:danger]).to be
+        end 
+    end
 end
